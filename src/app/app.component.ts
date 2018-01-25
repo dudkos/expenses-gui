@@ -1,10 +1,24 @@
+import { Router } from '@angular/router';
+import { AuthenticationService } from './authorization/service/authentication.service';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'expenses-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'My expenses';
+
+  public constructor(private authenticationService: AuthenticationService, private router: Router) {
+  }
+
+  isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
 }

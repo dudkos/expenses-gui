@@ -1,0 +1,25 @@
+.menu {
+  float: right;
+}
+
+.btn.menu {
+  margin-left:5px;
+}
+
+.menuButtons {
+  display: flex;
+  position: fixed;
+  right: 20px;
+}
+
+.row {
+  margin-top: 20px;
+}
+
+.col-md-6.chart {
+  width: 70%;
+}
+
+.col-md-6.chartTable {
+   width: 70%;
+}

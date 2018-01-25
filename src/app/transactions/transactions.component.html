@@ -1,0 +1,39 @@
+<div class="transactions" (click)="selectTransaction($event)">
+  <h2>{{category.name}}</h2>
+  <div class="search">
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" [disabled]="!isTransactionsPresented" />
+    <div class="search-results">
+      <div *ngFor="let transaction of transactions | async" (click)="selectSerchedTransaction($event, transaction.id)" class="search-result">
+        {{transaction.description}} <span style="font-weight: bold;">{{transaction.amount}} {{transaction.currencyCode}}</span>
+      </div>
+      <div class="dropdown menu" (mouseleave)="showDrop()">
+        <button *ngIf="(transactions | async)?.length > 0"  class="btn btn-primary menu" (mouseenter)="showDrop()">Move similar to</button>
+        <ul class="dropdown-content" *ngIf="isDropShown">
+          <li *ngFor="let category of categories" (click)="searchAndMoveTransactions(category)">
+            {{category.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="menu">
+    <div class="menuButtons">
+      <input type="file" (change)="uploadTransactions(category, $event)" placeholder="Upload File" accept=".xls,.pdf">
+      <div class="dropdown" (mouseleave)="show()">
+        <button class="btn btn-primary menu" (mouseenter)="show()" [disabled]="!isTransactionsPresented">Move selected to</button>
+        <ul class="dropdown-content" *ngIf=isShown>
+          <li *ngFor="let category of categories" (click)="moveTransactionsToCategory(category)">
+            {{category.name}}
+          </li>
+        </ul>
+      </div>
+      <button class="btn btn-primary menu" (click)="selectOrDeselectAll()" [disabled]="!isTransactionsPresented">{{getSelectAllButtonText()}}</button>
+      <button class="btn btn-primary menu" (click)="deleteAll()" [disabled]="!isTransactionsPresented">Delete all</button>
+      <button class="btn btn-primary menu" (click)="gotoChart()" [disabled]="!isTransactionsPresented">Chart</button>
+    </div>
+  </div>
+  <div class="transactionsTable" #txTab>
+    <ng-table [config]="config" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
+    </ng-table>
+  </div>
+</div>

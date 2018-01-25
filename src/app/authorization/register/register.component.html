@@ -1,0 +1,34 @@
+<div class="container">
+    <h2>Register</h2>
+    <form (ngSubmit)="onSubmit()" #regForm="ngForm">
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" id="firstName" required [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel"/>
+            <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">First name is required</div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" required [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel"/>
+            <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">Last name is required</div>
+        </div>
+        <div class="form-group">
+            <label for="login">User name</label>
+            <input type="text" class="form-control" id="login" required [(ngModel)]="user.login" name="login" #login="ngModel"/>
+            <div [hidden]="login.valid || login.pristine" class="alert alert-danger">User name is required</div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" #password="ngModel"/>
+            <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password is required</div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required [(ngModel)]="user.email" name="email" #email="ngModel">
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email is required</div>
+        </div>
+        <div class="form-group">
+            <button type="submit" [disabled]="!regForm.form.valid" class="btn btn-primary">Register</button>
+            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+</div>

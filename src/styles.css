@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+table tbody tr {
+  cursor: pointer;
+}
+table tbody tr.selected {
+  background-color: #607D8B !important;
+  color: #eee;
+}
+
+table tbody tr:hover {
+  background-color: #CFD8DC;
+  color: white;
+}

@@ -1,0 +1,8 @@
+<div class="main_panel">
+  <div class="left_panel">
+    <my-categories></my-categories>
+  </div>
+  <div class="right_panel" *ngIf="category">
+    <my-charts [category]="category"></my-charts>
+  </div>
+</div>
