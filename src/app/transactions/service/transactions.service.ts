@@ -1,7 +1,7 @@
 import { RequestService } from './../../util/request.service';
 import { Category } from './../../categories/category';
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http'
+import { Headers, Http } from '@angular/http/Http';
 import { Router } from '@angular/router';
 
 import { Transaction } from './../transaction';
@@ -28,7 +28,7 @@ export class TransactionService {
     }
 
     private getExpensesSearchUrl(id: number, idToadd: number, desc: string) {
-        return `expenses/categories/${id}/search?desc=${desc}&categoryToAddId=${idToadd}`
+        return `expenses/categories/${id}/search?desc=${desc}&categoryToAddId=${idToadd}`;
     }
 
     constructor(private requestService: RequestService) {

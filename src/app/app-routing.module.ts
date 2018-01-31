@@ -9,7 +9,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { ChartsComponent } from './charts/charts.component';
 import { TransactionTableComponent } from './transaction-table/transaction-table.component';
-import { AuthGuard } from "./authorization/auth.guard";
+import { AuthGuard } from './authorization/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },

@@ -3,10 +3,10 @@ import { TransactionTableService } from './../transaction-table/service/transact
 import { CategoryService } from './service/category.service';
 import { Category } from './category';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'my-categories',
+  selector: 'app-my-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
@@ -15,54 +15,58 @@ export class CategoriesComponent implements OnInit {
   categories: Category[];
   selectedCategory: Category;
 
-  constructor(private categoriesService: CategoryService, private transactionTableService: TransactionTableService, private router: Router) {
+  constructor(private categoriesService: CategoryService,
+    private transactionTableService: TransactionTableService,
+    private router: Router) {
   }
 
   gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedCategory.id])
+    this.router.navigate(['/detail', this.selectedCategory.id]);
   }
 
   getCategories(): void {
     this.categoriesService.getCategories()
-    .then(categories => {
-      this.categories = categories
-      this.onSelect(categories[0]);
-    });
+      .then(categories => {
+        this.categories = categories;
+        this.onSelect(categories[0]);
+      });
   }
 
   ngOnInit(): void {
     this.getCategories();
   }
 
-  onSelect(category : Category): void {
+  onSelect(category: Category): void {
     this.selectedCategory = category;
     this.transactionTableService.selectCategory(category);
-    this.transactionTableService.saveCategories(this.categories.filter(category => this.selectedCategory.id !== category.id));
+    this.transactionTableService.saveCategories(this.categories.filter(cat => this.selectedCategory.id !== cat.id));
   }
 
   add(name: string): void {
     name = name.trim();
-    if(!name) {return;}
+    if (!name) {
+      return;
+    }
     this.categoriesService.create(name)
-    .then(category => {
-      this.categories.push(category);
-      if(this.selectedCategory !== undefined) {
-        this.transactionTableService.saveCategories(this.categories.filter(category => this.selectedCategory.id !== category.id));
-      }
-    })
+      .then(category => {
+        this.categories.push(category);
+        if (this.selectedCategory !== undefined) {
+          this.transactionTableService.saveCategories(this.categories.filter(cat => this.selectedCategory.id !== cat.id));
+        }
+      });
   }
 
   delete(category: Category): void {
     this.categoriesService
-    .delete(category.id)
-    .then(() => {
-      this.categories = this.categories.filter(h => h !== category);
-      if(this.selectedCategory === category) {
-        this.onSelect(this.categories[0]);
-      } else {
-        this.transactionTableService.saveCategories(this.categories);
-      }
-    })
+      .delete(category.id)
+      .then(() => {
+        this.categories = this.categories.filter(h => h !== category);
+        if (this.selectedCategory === category) {
+          this.onSelect(this.categories[0]);
+        } else {
+          this.transactionTableService.saveCategories(this.categories);
+        }
+      });
   }
 }
 

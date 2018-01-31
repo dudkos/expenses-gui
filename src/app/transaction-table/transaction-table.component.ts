@@ -4,7 +4,7 @@ import { Category } from './../categories/category';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'expenses',
+    selector: 'app-expenses',
     templateUrl: './transaction-table.component.html',
     styleUrls: ['./transaction-table.component.css'],
     providers: [TransactionTableService]
@@ -19,12 +19,12 @@ export class TransactionTableComponent {
            category => {
                this.category = category;
            }
-        )
+        );
 
         transactionTableService.categories$.subscribe(
             categories => {
                 this.categories = categories;
             }
-        )
+        );
     }
 }

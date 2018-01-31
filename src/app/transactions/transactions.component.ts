@@ -15,7 +15,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
-  selector: 'my-transactions',
+  selector: 'app-my-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.css']
 })
@@ -32,19 +32,19 @@ export class TransactionsComponent {
 
   subscription: Subscription;
 
-  public isShown: boolean = false;
+  public isShown = false;
 
-  public isDropShown: boolean = false;
+  public isDropShown = false;
 
   private lastTerm: string;
 
-  public isTransactionsPresented: boolean = false;
+  public isTransactionsPresented = false;
 
   public selectedTransactionIds: Array<number> = [];
 
   public rows: Array<any> = [];
 
-  private selectAllButtonText = 'Select All'
+  private selectAllButtonText = 'Select All';
 
   public columns: Array<any> = [
     { title: 'Date', name: 'transactionDate', sort: false },
@@ -147,7 +147,7 @@ export class TransactionsComponent {
   }
 
   moveOrRemoveFromSelectedTransactions(id: number) {
-    let index: number = this.selectedTransactionIds.indexOf(id);
+    const index: number = this.selectedTransactionIds.indexOf(id);
     if (index !== -1) {
       this.selectedTransactionIds.splice(index, 1);
     } else {
@@ -156,7 +156,7 @@ export class TransactionsComponent {
   }
 
   selectTransaction(event: any) {
-    if (event.target.tagName === "TD") {
+    if (event.target.tagName === 'TD') {
       event.target.parentElement.classList.toggle('selected');
     }
   }
@@ -166,7 +166,7 @@ export class TransactionsComponent {
       this.transactionService.moveTransactionsToCategory(category.id, this.selectedTransactionIds)
         .then(() => {
           this.resetSearchResults();
-        })
+        });
     }
   }
 
@@ -175,7 +175,7 @@ export class TransactionsComponent {
       .then(() => {
         this.resetSearchResults();
         this.getTransactions(this.category);
-      })
+      });
   }
 
   resetSearchResults() {
@@ -202,10 +202,10 @@ export class TransactionsComponent {
   }
 
   private setSTransactionPresented(value: boolean) {
-    this.isTransactionsPresented = value
+    this.isTransactionsPresented = value;
   }
 
   gotoChart(): void {
-    this.router.navigate(['/charts'])
+    this.router.navigate(['/charts']);
   }
 }

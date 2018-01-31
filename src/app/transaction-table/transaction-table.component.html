@@ -1,8 +1,8 @@
 <div class="main_panel">
   <div class="left_panel">
-    <my-categories></my-categories>
+    <app-my-categories></app-my-categories>
   </div>
   <div class="right_panel" *ngIf="category">
-    <my-transactions [category]="category" [categories]="categories"></my-transactions>
+    <app-my-transactions [category]="category" [categories]="categories"></app-my-transactions>
   </div>
 </div>

@@ -3,7 +3,7 @@ import { AuthenticationService } from './authorization/service/authentication.se
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'expenses-app',
+  selector: 'app-expenses',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

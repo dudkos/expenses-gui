@@ -5,7 +5,7 @@ import { TransactionTableService } from './../transaction-table/service/transact
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'transaction_charts',
+    selector: 'app-transaction-charts',
     templateUrl: './transaction-chart.component.html',
     styleUrls: ['./transaction-chart.component.css'],
     providers: [TransactionTableService]
@@ -19,6 +19,6 @@ export class TransactionChartComponent {
            category => {
                this.category = category;
            }
-        )
+        );
     }
 }

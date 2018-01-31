@@ -15,18 +15,18 @@ export class CategoryService {
     }
 
     getCategory(id: number): Promise<Category> {
-        return this.requestService.get(this.categoriesUrl+`/${id}`)
+        return this.requestService.get(this.categoriesUrl + `/${id}`);
     }
 
     updateCategory(category: Category): Promise<Category> {
-        return this.requestService.put(this.categoriesUrl+`/${category.id}`, JSON.stringify(category));
+        return this.requestService.put(this.categoriesUrl + `/${category.id}`, JSON.stringify(category));
     }
 
     create(name: String): Promise<Category> {
-        return this.requestService.put(this.categoriesUrl, JSON.stringify({name: name}))
+        return this.requestService.put(this.categoriesUrl, JSON.stringify({name: name}));
     }
 
     delete(id: number): Promise<void> {
-        return this.requestService.delete(this.categoriesUrl+`/${id}`)
+        return this.requestService.delete(this.categoriesUrl + `/${id}`);
     }
 }

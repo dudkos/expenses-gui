@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-   selector: 'login',
+   selector: 'app-login',
     templateUrl: './auth.component.html',
     styleUrls: ['./auth.component.css']
 })
@@ -26,8 +26,8 @@ export class AuthComponent implements OnInit {
         this.authenticationService.login(this.model.login, this.model.password)
             .subscribe(
                 data => {
-                   if(data === true) {
-                      this.router.navigate(["/transactions"]);
+                   if (data === true) {
+                      this.router.navigate(['/transactions']);
                    } else {
                        this.loading = false;
                    }

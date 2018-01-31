@@ -4,5 +4,5 @@ export class Transaction {
     currencyCode: string;
     transactionDate: string;
     amount: number;
-    description:string;
+    description: string;
 }
